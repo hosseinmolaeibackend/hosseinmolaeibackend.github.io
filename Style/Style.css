@@ -1,0 +1,203 @@
+    /* reset اولیه و تنظیمات پایه */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        opacity: 1;
+      }
+      @font-face {
+        font-family: dangrek;
+        src: url(./Dangrek-Regular.woff);
+      }
+      body {
+        font-family: 'dangrek', 'Robot', sans-serif !important;
+        background-image: url(./ieva-vaitkeviciute-aka-eivarain-absolution-in-resolute-2.gif);
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #FFA500;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+  
+      /* استایل سایدبار (ستون کناری) */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background: #6a4f4b;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+        /* انیمیشن ورود سایدبار */
+        animation: slideInLeft 1s ease forwards;
+        transform: translateX(-100%);
+      }
+      /* اطلاعات پروفایل در سایدبار */
+      .profile {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #fff;
+        opacity: 0;
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.5s;
+      }
+      .profile img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 2px solid #fff;
+      }
+      .profile h1 {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+      }
+      .profile p {
+        font-size: 0.9rem;
+      }
+  
+      /* منوی سایدبار */
+      nav {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.8s;
+      }
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        transition:  0.3s, color 0.3s;
+        font-weight: 500;
+      }
+      nav a:hover {
+        background: #fff;
+        color: #6a4f4b;
+        border-radius: 4px;
+      }
+  
+      /* استایل محتوای اصلی */
+      .main-content {
+        margin-left: 250px; /* به اندازه سایدبار */
+        padding: 40px 20px;
+      }
+  
+      /* سکشن‌ها (بخش‌های مختلف صفحه) */
+      section {
+        margin-bottom: 60px;
+        opacity: 0;               /* برای افکت اسکرول */
+        transform: translateY(30px);  /* برای افکت اسکرول */
+        transition: 0.8s ease;    /* برای افکت اسکرول */
+      }
+      section h2 {
+        font-size: 1.8rem;
+        color: #6a4f4b;
+        margin-bottom: 15px;
+        position: relative;
+      }
+      /* خط زیر عنوان با انیمیشن */
+      section h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 50px;
+        height: 3px;
+        background: #6a4f4b;
+        border-radius: 2px;
+        animation: growLine 1s forwards;
+      }
+      section p, section li {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+  
+      /* لیست‌ها */
+      ul {
+        list-style: disc inside;
+        margin-left: 20px;
+      }
+  
+      /* انیمیشن‌های کلیدی */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes slideInLeft {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes growLine {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 50px;
+        }
+      }
+  
+      /* کلاس اکتیو برای سکشن‌هایی که در دید هستند */
+      .active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  
+      /* استایل لینک‌ها و موارد متفرقه */
+      a {
+        color: #6a4f4b;
+        transition: color 0.3s;
+      }
+      a:hover {
+        color: #333;
+      }
+  
+      /* ریسپانسیو برای صفحه‌های کوچکتر */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 200px;
+        }
+        .main-content {
+          margin-left: 200px;
+        }
+      }
+      @media (max-width: 576px) {
+        .sidebar {
+          position: relative;
+          width: 100%;
+          height: auto;
+          transform: translateX(0); /* در موبایل می‌گذاریم سایدبار همیشه باز باشد */
+          animation: none;
+        }
+        .profile img {
+          width: 80px;
+          height: 80px;
+        }
+        nav {
+          flex-direction: row;
+          justify-content: space-around;
+          margin-bottom: 20px;
+        }
+        nav a {
+          padding: 10px;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+    }
